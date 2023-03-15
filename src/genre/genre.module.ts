@@ -4,6 +4,6 @@ import { GenreService } from './genre.service';
 
 @Module({
   controllers: [GenreController],
-  providers: [GenreService]
+  providers: [GenreService],
 })
 export class GenreModule {}

@@ -4,6 +4,6 @@ import { UserBookService } from './user_book.service';
 
 @Module({
   controllers: [UserBookController],
-  providers: [UserBookService]
+  providers: [UserBookService],
 })
 export class UserBookModule {}

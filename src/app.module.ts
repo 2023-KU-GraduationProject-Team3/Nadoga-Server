@@ -12,7 +12,16 @@ import { BookGenreModule } from './book_genre/book_genre.module';
 import { ReviewModule } from './review/review.module';
 
 @Module({
-  imports: [UserModule, BookModule, GenreModule, UserGenreModule, WishlistModule, UserBookModule, BookGenreModule, ReviewModule],
+  imports: [
+    UserModule,
+    BookModule,
+    GenreModule,
+    UserGenreModule,
+    WishlistModule,
+    UserBookModule,
+    BookGenreModule,
+    ReviewModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

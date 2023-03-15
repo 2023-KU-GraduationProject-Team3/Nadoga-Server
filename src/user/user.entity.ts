@@ -61,19 +61,15 @@ export class User extends BaseEntity {
   })
   genre: string;
 
- 
-
   @CreateDateColumn({ name: 'create_at', comment: '생성일' })
   createdAt: Date;
 
   @UpdateDateColumn({ name: 'update_at', comment: '수정일' })
   updatedAt: Date;
 
-  @OneToMany(() => UserBook, userBook => userBook.user)
+  @OneToMany(() => UserBook, (userBook) => userBook.user)
   userBooks: UserBook[];
 
-  @OneToMany(() => Wishlist, wishlist => wishlist.user)
+  @OneToMany(() => Wishlist, (wishlist) => wishlist.user)
   wishlists: Wishlist[];
-
-
 }
