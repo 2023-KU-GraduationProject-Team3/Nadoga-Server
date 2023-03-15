@@ -1,4 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { WishlistRepository } from './wishlist.repository';
 
 @Injectable()
-export class WishlistService {}
+export class WishlistService {
+  constructor(private wishlistRepository: WishlistRepository) {}
+}
