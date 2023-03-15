@@ -2,11 +2,14 @@ enum GENDER {
   MEN = 'MEN',
   WOMEN = 'WOMEN',
 }
+import { UserBook } from 'src/user_book/user_book.entity';
+import { Wishlist } from 'src/wishlist/wishlist.entity';
 import {
   BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   Unique,
   UpdateDateColumn,
@@ -58,9 +61,19 @@ export class User extends BaseEntity {
   })
   genre: string;
 
+ 
+
   @CreateDateColumn({ name: 'create_at', comment: '생성일' })
   createdAt: Date;
 
   @UpdateDateColumn({ name: 'update_at', comment: '수정일' })
   updatedAt: Date;
+
+  @OneToMany(() => UserBook, userBook => userBook.user)
+  userBooks: UserBook[];
+
+  @OneToMany(() => Wishlist, wishlist => wishlist.user)
+  wishlists: Wishlist[];
+
+
 }
