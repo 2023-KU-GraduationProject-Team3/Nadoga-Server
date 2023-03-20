@@ -1,20 +1,12 @@
 import { Review } from 'src/review/review.entity';
 import { UserBook } from 'src/user_book/user_book.entity';
 import { Wishlist } from 'src/wishlist/wishlist.entity';
-import {
-  BaseEntity,
-  Column,
-  Entity,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('book')
 export class Book extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
-  @Column({ name: 'book_id' })
-  id: string;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
   @Column({
     name: 'book_name',
@@ -22,7 +14,7 @@ export class Book extends BaseEntity {
     length: 255,
     comment: '도서 이름',
   })
-  name: string;
+  name :string;
 
   @Column({
     name: 'book_author',
@@ -43,8 +35,7 @@ export class Book extends BaseEntity {
   @Column({
     name: 'book_publication_date',
     type: 'date',
-    comment: '출판일',
-  })
+    comment: '출판일',  })
   publicationDate: Date;
 
   @Column({
@@ -69,12 +60,18 @@ export class Book extends BaseEntity {
   })
   genre: string;
 
-  @OneToMany(() => UserBook, (userBook) => userBook.book)
+  @OneToMany(() => UserBook, userBook => userBook.book)
   userBooks: UserBook[];
 
-  @OneToMany(() => Review, (review) => review.book)
+  @OneToMany(() => Review, review => review.book)
   reviews: Review[];
 
-  @ManyToOne(() => Wishlist, (wishlist) => wishlist.books)
+  @ManyToOne(() => Wishlist, wishlist => wishlist.books)
   wishlist: Wishlist;
+
+  
+
+
+
 }
+

@@ -4,6 +4,7 @@ import {
   Column,
   Entity,
   ManyToOne,
+  PrimaryColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -11,7 +12,6 @@ import {
 @Entity('review')
 export class Review extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
-  @Column({ name: 'review_id' })
   id: string;
 
   @Column({

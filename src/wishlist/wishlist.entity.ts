@@ -15,7 +15,6 @@ import {
 @Entity('wishlist')
 export class Wishlist extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
-  @Column({ name: 'wishlist_id' })
   id: string;
 
   @CreateDateColumn({ name: 'whishlist_date', comment: '위시리스트 생성일' })
