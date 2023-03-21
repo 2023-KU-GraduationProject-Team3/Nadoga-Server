@@ -9,13 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.User = exports.GENDER = void 0;
 var GENDER;
 (function (GENDER) {
     GENDER[GENDER["MEN"] = 0] = "MEN";
     GENDER[GENDER["WOMEN"] = 1] = "WOMEN";
     GENDER[GENDER["UNKNOWN"] = 2] = "UNKNOWN";
-})(GENDER || (GENDER = {}));
+})(GENDER = exports.GENDER || (exports.GENDER = {}));
 const user_book_entity_1 = require("../user_book/user_book.entity");
 const wishlist_entity_1 = require("../wishlist/wishlist.entity");
 const typeorm_1 = require("typeorm");

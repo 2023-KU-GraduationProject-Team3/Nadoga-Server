@@ -1,4 +1,4 @@
-declare enum GENDER {
+export declare enum GENDER {
     MEN = 0,
     WOMEN = 1,
     UNKNOWN = 2
@@ -19,4 +19,3 @@ export declare class User extends BaseEntity {
     userBooks: UserBook[];
     wishlists: Wishlist[];
 }
-export {};

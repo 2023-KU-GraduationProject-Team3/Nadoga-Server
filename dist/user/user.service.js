@@ -16,6 +16,18 @@ let UserService = class UserService {
     constructor(userRepository) {
         this.userRepository = userRepository;
     }
+    async getByEmail(email) {
+        const user = await this.userRepository.findOneBy({ email: email });
+        if (user) {
+            return user;
+        }
+        throw new common_1.HttpException('사용자 이메일이 존재하지 않습니다.', common_1.HttpStatus.NOT_FOUND);
+    }
+    async create(userData) {
+        const newUser = await this.userRepository.create(userData);
+        await this.userRepository.save(newUser);
+        return newUser;
+    }
 };
 UserService = __decorate([
     (0, common_1.Injectable)(),
