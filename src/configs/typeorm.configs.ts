@@ -5,7 +5,7 @@ export const typeORMConfig: TypeOrmModuleOptions = {
   host: 'localhost',
   port: 3306,
   username: 'root',
-  password: 'glglgl',
+  password: 'min9211301',
   database: 'nadoga',
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
   synchronize: true,
