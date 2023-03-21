@@ -1,7 +1,9 @@
 enum GENDER {
-  MEN = 'MEN',
-  WOMEN = 'WOMEN',
+  MEN = 0,
+  WOMEN = 1,
+  UNKNOWN = 2,
 }
+
 import { UserBook } from 'src/user_book/user_book.entity';
 import { Wishlist } from 'src/wishlist/wishlist.entity';
 import {
@@ -44,13 +46,21 @@ export class User extends BaseEntity {
     comment: '유저 이름',
   })
   name: string;
+
   @Column({
     name: 'user_gender',
     type: 'enum',
     enum: GENDER,
     comment: '유저 성별(MEN, WOMEN)',
   })
-  gender: string;
+  gender: GENDER;
+
+  @Column({
+    name: 'user_age',
+    type: 'int',
+    comment: '유저 나이',
+  })
+  age: number;
 
   @Column({
     name: 'user_genre',
