@@ -35,4 +35,4 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 
-/nadoga-server/src/configs/typeorm.configs.ts
+src/configs/typeorm.configs.ts
