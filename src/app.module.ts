@@ -22,3 +22,5 @@ import { typeORMConfig } from './configs/typeorm.configs';
   providers: [AppService],
 })
 export class AppModule {}
+
+
