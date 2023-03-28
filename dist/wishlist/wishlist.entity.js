@@ -25,6 +25,7 @@ __decorate([
 ], Wishlist.prototype, "whishDate", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => user_entity_1.User, (user) => user.wishlists),
+    (0, typeorm_1.JoinColumn)({ name: 'user_id' }),
     __metadata("design:type", user_entity_1.User)
 ], Wishlist.prototype, "user", void 0);
 __decorate([

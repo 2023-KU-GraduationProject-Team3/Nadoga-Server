@@ -5,6 +5,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -21,6 +22,7 @@ export class Wishlist extends BaseEntity {
   whishDate: Date;
 
   @ManyToOne(() => User, (user) => user.wishlists)
+  @JoinColumn({ name: 'user_id' })
   user: User;
 
   @OneToMany(() => Book, (book) => book.wishlist)

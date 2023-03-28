@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Review = void 0;
 const book_entity_1 = require("../book/book.entity");
+const user_entity_1 = require("../user/user.entity");
 const typeorm_1 = require("typeorm");
 let Review = class Review extends typeorm_1.BaseEntity {
 };
@@ -29,15 +30,21 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({
         name: 'review_rating',
-        type: 'int',
+        type: 'double',
         comment: '리뷰 평점',
     }),
     __metadata("design:type", Number)
 ], Review.prototype, "rating", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => book_entity_1.Book, (book) => book.reviews),
+    (0, typeorm_1.JoinColumn)({ name: 'book_id' }),
     __metadata("design:type", book_entity_1.Book)
 ], Review.prototype, "book", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.User, (user) => user.reviews),
+    (0, typeorm_1.JoinColumn)({ name: 'user_id' }),
+    __metadata("design:type", user_entity_1.User)
+], Review.prototype, "user", void 0);
 Review = __decorate([
     (0, typeorm_1.Entity)('review')
 ], Review);

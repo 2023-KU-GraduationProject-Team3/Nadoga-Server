@@ -1,8 +1,10 @@
 import { Book } from 'src/book/book.entity';
+import { User } from 'src/user/user.entity';
 import {
   BaseEntity,
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   PrimaryColumn,
   PrimaryGeneratedColumn,
@@ -23,11 +25,16 @@ export class Review extends BaseEntity {
 
   @Column({
     name: 'review_rating',
-    type: 'int',
+    type: 'double',
     comment: '리뷰 평점',
   })
   rating: number;
 
   @ManyToOne(() => Book, (book) => book.reviews)
+  @JoinColumn({ name: 'book_id' })
   book: Book;
+
+  @ManyToOne(() => User, (user) => user.reviews)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 }

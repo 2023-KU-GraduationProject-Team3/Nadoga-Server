@@ -4,7 +4,8 @@ export enum GENDER {
   UNKNOWN = 2,
 }
 
-import { UserBook } from 'src/user_book/user_book.entity';
+import { Review } from 'src/review/review.entity';
+import { research } from 'src/research/research.entity';
 import { Wishlist } from 'src/wishlist/wishlist.entity';
 import {
   BaseEntity,
@@ -76,9 +77,12 @@ export class User extends BaseEntity {
   @UpdateDateColumn({ name: 'update_at', comment: '수정일' })
   updatedAt: Date;
 
-  @OneToMany(() => UserBook, (userBook) => userBook.user)
-  userBooks: UserBook[];
+  @OneToMany(() => research, (research) => research.user)
+  research: research[];
 
   @OneToMany(() => Wishlist, (wishlist) => wishlist.user)
   wishlists: Wishlist[];
+
+  @OneToMany(() => Review, (review) => review.book)
+  reviews: Review[];
 }

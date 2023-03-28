@@ -4,5 +4,5 @@ import { UserService } from './user.service';
 export declare class UserController {
     private userService;
     constructor(userService: UserService);
-    create(createUserDto: CreateUserDto): Promise<User>;
+    createUser(createUserDto: CreateUserDto): Promise<User>;
 }

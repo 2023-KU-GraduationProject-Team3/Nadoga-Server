@@ -11,6 +11,16 @@ const customTypeOrm_decorator_1 = require("../customTypeOrm.decorator");
 const typeorm_1 = require("typeorm");
 const user_entity_1 = require("./user.entity");
 let UserRepository = class UserRepository extends typeorm_1.Repository {
+    async createUser(createUserDto) {
+        const user = new user_entity_1.User();
+        user.email = createUserDto.email;
+        user.password = createUserDto.password;
+        await user.save();
+        return user;
+    }
+    async findOneByEmail(email) {
+        return this.findOneBy({ email: email });
+    }
 };
 UserRepository = __decorate([
     (0, customTypeOrm_decorator_1.CustomRepository)(user_entity_1.User)

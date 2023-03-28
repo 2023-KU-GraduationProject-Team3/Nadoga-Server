@@ -3,7 +3,8 @@ export declare enum GENDER {
     WOMEN = 1,
     UNKNOWN = 2
 }
-import { UserBook } from 'src/user_book/user_book.entity';
+import { Review } from 'src/review/review.entity';
+import { research } from 'src/research/research.entity';
 import { Wishlist } from 'src/wishlist/wishlist.entity';
 import { BaseEntity } from 'typeorm';
 export declare class User extends BaseEntity {
@@ -16,6 +17,7 @@ export declare class User extends BaseEntity {
     genre: string;
     createdAt: Date;
     updatedAt: Date;
-    userBooks: UserBook[];
+    research: research[];
     wishlists: Wishlist[];
+    reviews: Review[];
 }

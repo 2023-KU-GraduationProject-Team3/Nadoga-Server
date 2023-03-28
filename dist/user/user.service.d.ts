@@ -3,6 +3,6 @@ import { UserRepository } from './user.repository';
 export declare class UserService {
     private userRepository;
     constructor(userRepository: UserRepository);
-    getByEmail(email: string): Promise<import("./user.entity").User>;
-    create(userData: CreateUserDto): Promise<import("./user.entity").User>;
+    createUser(createUserDto: CreateUserDto): Promise<import("./user.entity").User>;
+    findByEmail(createUserDto: CreateUserDto): Promise<import("./user.entity").User>;
 }

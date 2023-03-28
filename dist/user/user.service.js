@@ -8,29 +8,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
+const typeorm_1 = require("@nestjs/typeorm");
 const user_repository_1 = require("./user.repository");
 let UserService = class UserService {
     constructor(userRepository) {
         this.userRepository = userRepository;
     }
-    async getByEmail(email) {
-        const user = await this.userRepository.findOneBy({ email: email });
-        if (user) {
-            return user;
-        }
-        throw new common_1.HttpException('사용자 이메일이 존재하지 않습니다.', common_1.HttpStatus.NOT_FOUND);
+    async createUser(createUserDto) {
+        return this.userRepository.createUser(createUserDto);
     }
-    async create(userData) {
-        const newUser = await this.userRepository.create(userData);
-        await this.userRepository.save(newUser);
-        return newUser;
+    async findByEmail(createUserDto) {
+        return this.userRepository.findOneByEmail(createUserDto.email);
     }
 };
 UserService = __decorate([
     (0, common_1.Injectable)(),
+    __param(0, (0, typeorm_1.InjectRepository)(user_repository_1.UserRepository)),
     __metadata("design:paramtypes", [user_repository_1.UserRepository])
 ], UserService);
 exports.UserService = UserService;

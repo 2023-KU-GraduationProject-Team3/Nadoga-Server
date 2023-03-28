@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Book = void 0;
 const review_entity_1 = require("../review/review.entity");
-const user_book_entity_1 = require("../user_book/user_book.entity");
+const research_entity_1 = require("../research/research.entity");
 const wishlist_entity_1 = require("../wishlist/wishlist.entity");
 const typeorm_1 = require("typeorm");
 let Book = class Book extends typeorm_1.BaseEntity {
@@ -81,15 +81,16 @@ __decorate([
     __metadata("design:type", String)
 ], Book.prototype, "genre", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => user_book_entity_1.UserBook, userBook => userBook.book),
+    (0, typeorm_1.OneToMany)(() => research_entity_1.research, (research) => research.book),
     __metadata("design:type", Array)
-], Book.prototype, "userBooks", void 0);
+], Book.prototype, "research", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => review_entity_1.Review, review => review.book),
+    (0, typeorm_1.OneToMany)(() => review_entity_1.Review, (review) => review.book),
     __metadata("design:type", Array)
 ], Book.prototype, "reviews", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => wishlist_entity_1.Wishlist, wishlist => wishlist.books),
+    (0, typeorm_1.ManyToOne)(() => wishlist_entity_1.Wishlist, (wishlist) => wishlist.books),
+    (0, typeorm_1.JoinColumn)({ name: 'wishlist_id' }),
     __metadata("design:type", wishlist_entity_1.Wishlist)
 ], Book.prototype, "wishlist", void 0);
 Book = __decorate([
