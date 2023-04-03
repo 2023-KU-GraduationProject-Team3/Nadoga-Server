@@ -13,5 +13,5 @@ export declare class Book extends BaseEntity {
     genre: string;
     research: research[];
     reviews: Review[];
-    wishlist: Wishlist;
+    wishlists: Wishlist[];
 }

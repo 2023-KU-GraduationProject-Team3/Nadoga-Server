@@ -5,5 +5,5 @@ export declare class Wishlist extends BaseEntity {
     id: string;
     whishDate: Date;
     user: User;
-    books: Book[];
+    book: Book;
 }

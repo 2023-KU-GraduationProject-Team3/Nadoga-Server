@@ -75,7 +75,6 @@ export class Book extends BaseEntity {
   @OneToMany(() => Review, (review) => review.book)
   reviews: Review[];
 
-  @ManyToOne(() => Wishlist, (wishlist) => wishlist.books)
-  @JoinColumn({ name: 'wishlist_id' })
-  wishlist: Wishlist;
+  @OneToMany(() => Wishlist, (wishlist) => wishlist.book)
+  wishlists: Wishlist[];
 }

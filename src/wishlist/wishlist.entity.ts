@@ -11,8 +11,6 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-//Wishlist는 한 명의 유저가 여러 개의 책을 담을 수 있기 때문에 OneToMany 관계가 적절
-
 @Entity('wishlist')
 export class Wishlist extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
@@ -25,6 +23,7 @@ export class Wishlist extends BaseEntity {
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @OneToMany(() => Book, (book) => book.wishlist)
-  books: Book[];
+  @ManyToOne(() => Book, (book) => book.wishlists)
+  @JoinColumn({ name: 'book_id' })
+  book: Book;
 }

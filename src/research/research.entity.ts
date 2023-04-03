@@ -32,4 +32,5 @@ export class research extends BaseEntity {
   @ManyToOne(() => Book, (book) => book.research)
   @JoinColumn({ name: 'book_id' })
   book: Book;
+
 }

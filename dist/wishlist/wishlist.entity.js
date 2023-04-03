@@ -29,9 +29,10 @@ __decorate([
     __metadata("design:type", user_entity_1.User)
 ], Wishlist.prototype, "user", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => book_entity_1.Book, (book) => book.wishlist),
-    __metadata("design:type", Array)
-], Wishlist.prototype, "books", void 0);
+    (0, typeorm_1.ManyToOne)(() => book_entity_1.Book, (book) => book.wishlists),
+    (0, typeorm_1.JoinColumn)({ name: 'book_id' }),
+    __metadata("design:type", book_entity_1.Book)
+], Wishlist.prototype, "book", void 0);
 Wishlist = __decorate([
     (0, typeorm_1.Entity)('wishlist')
 ], Wishlist);
