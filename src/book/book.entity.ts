@@ -1,5 +1,5 @@
 import { Review } from 'src/review/review.entity';
-import { research } from 'src/research/research.entity';
+import { search } from 'src/search/search.entity';
 import { Wishlist } from 'src/wishlist/wishlist.entity';
 import {
   BaseEntity,
@@ -69,8 +69,8 @@ export class Book extends BaseEntity {
   })
   genre: string;
 
-  @OneToMany(() => research, (research) => research.book)
-  research: research[];
+  @OneToMany(() => search, (search) => search.book)
+  search: search[];
 
   @OneToMany(() => Review, (review) => review.book)
   reviews: Review[];
