@@ -3,4 +3,9 @@ import { Repository } from 'typeorm';
 import { Review } from './review.entity';
 
 @CustomRepository(Review)
-export class ReviewRepository extends Repository<Review> {}
+export class ReviewRepository extends Repository<Review> {
+
+  getAllReview(): Promise<Review[]> {
+    return this.find();
+  }
+}
