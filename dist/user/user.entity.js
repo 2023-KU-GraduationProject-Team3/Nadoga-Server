@@ -17,7 +17,7 @@ var GENDER;
     GENDER[GENDER["UNKNOWN"] = 2] = "UNKNOWN";
 })(GENDER = exports.GENDER || (exports.GENDER = {}));
 const review_entity_1 = require("../review/review.entity");
-const research_entity_1 = require("../research/research.entity");
+const search_entity_1 = require("../search/search.entity");
 const wishlist_entity_1 = require("../wishlist/wishlist.entity");
 const typeorm_1 = require("typeorm");
 let User = class User extends typeorm_1.BaseEntity {
@@ -88,9 +88,9 @@ __decorate([
     __metadata("design:type", Date)
 ], User.prototype, "updatedAt", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => research_entity_1.research, (research) => research.user),
+    (0, typeorm_1.OneToMany)(() => search_entity_1.search, (search) => search.user),
     __metadata("design:type", Array)
-], User.prototype, "research", void 0);
+], User.prototype, "search", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => wishlist_entity_1.Wishlist, (wishlist) => wishlist.user),
     __metadata("design:type", Array)

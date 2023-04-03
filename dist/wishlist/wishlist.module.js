@@ -8,7 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WishlistModule = void 0;
 const common_1 = require("@nestjs/common");
+const book_repository_1 = require("../book/book.repository");
 const customTypeOrm_module_1 = require("../customTypeOrm.module");
+const user_repository_1 = require("../user/user.repository");
 const wishlist_controller_1 = require("./wishlist.controller");
 const wishlist_repository_1 = require("./wishlist.repository");
 const wishlist_service_1 = require("./wishlist.service");
@@ -16,7 +18,11 @@ let WishlistModule = class WishlistModule {
 };
 WishlistModule = __decorate([
     (0, common_1.Module)({
-        imports: [customTypeOrm_module_1.CustomTypeOrmModule.forCustomRepository([wishlist_repository_1.WishlistRepository])],
+        imports: [
+            customTypeOrm_module_1.CustomTypeOrmModule.forCustomRepository([wishlist_repository_1.WishlistRepository]),
+            customTypeOrm_module_1.CustomTypeOrmModule.forCustomRepository([user_repository_1.UserRepository]),
+            customTypeOrm_module_1.CustomTypeOrmModule.forCustomRepository([book_repository_1.BookRepository]),
+        ],
         controllers: [wishlist_controller_1.WishlistController],
         providers: [wishlist_service_1.WishlistService],
     })

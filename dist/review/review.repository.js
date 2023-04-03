@@ -11,6 +11,9 @@ const customTypeOrm_decorator_1 = require("../customTypeOrm.decorator");
 const typeorm_1 = require("typeorm");
 const review_entity_1 = require("./review.entity");
 let ReviewRepository = class ReviewRepository extends typeorm_1.Repository {
+    getAllReview() {
+        return this.find();
+    }
 };
 ReviewRepository = __decorate([
     (0, customTypeOrm_decorator_1.CustomRepository)(review_entity_1.Review)

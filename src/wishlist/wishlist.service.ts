@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Book } from 'src/book/book.entity';
-import { User } from 'src/user/user.entity';
-import { Repository } from 'typeorm';
+import { BookRepository } from 'src/book/book.repository';
+import { UserRepository } from 'src/user/user.repository';
 import { CreateWishlistDto } from './dto/create-wishlist.dto';
 import { Wishlist } from './wishlist.entity';
 import { WishlistRepository } from './wishlist.repository';
@@ -10,12 +9,12 @@ import { WishlistRepository } from './wishlist.repository';
 @Injectable()
 export class WishlistService {
   constructor(
-    @InjectRepository(Wishlist)
-    private wishlistRepository: Repository<Wishlist>,
-    @InjectRepository(User)
-    private userRepository: Repository<User>,
-    @InjectRepository(Book)
-    private bookRepository: Repository<Book>,
+    @InjectRepository(WishlistRepository)
+    private wishlistRepository: WishlistRepository,
+    @InjectRepository(UserRepository)
+    private userRepository: UserRepository,
+    @InjectRepository(BookRepository)
+    private bookRepository: BookRepository,
   ) {}
   async create(createWishlistDto: CreateWishlistDto): Promise<Wishlist> {
     const wishlist = new Wishlist();
@@ -31,5 +30,9 @@ export class WishlistService {
     });
     wishlist.book = book;
     return this.wishlistRepository.save(wishlist);
+  }
+
+  async delete(id: number): Promise<void> {
+    await this.wishlistRepository.delete(id);
   }
 }

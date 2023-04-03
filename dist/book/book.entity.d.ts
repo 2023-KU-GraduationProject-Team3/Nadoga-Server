@@ -1,5 +1,5 @@
 import { Review } from 'src/review/review.entity';
-import { research } from 'src/research/research.entity';
+import { search } from 'src/search/search.entity';
 import { Wishlist } from 'src/wishlist/wishlist.entity';
 import { BaseEntity } from 'typeorm';
 export declare class Book extends BaseEntity {
@@ -11,7 +11,7 @@ export declare class Book extends BaseEntity {
     imageUrl: string;
     description: string;
     genre: string;
-    research: research[];
+    search: search[];
     reviews: Review[];
     wishlists: Wishlist[];
 }

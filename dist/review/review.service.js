@@ -16,6 +16,9 @@ let ReviewService = class ReviewService {
     constructor(reviewRepository) {
         this.reviewRepository = reviewRepository;
     }
+    getAllReview() {
+        return this.reviewRepository.getAllReview();
+    }
 };
 ReviewService = __decorate([
     (0, common_1.Injectable)(),

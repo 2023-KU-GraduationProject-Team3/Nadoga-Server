@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Book = void 0;
 const review_entity_1 = require("../review/review.entity");
-const research_entity_1 = require("../research/research.entity");
+const search_entity_1 = require("../search/search.entity");
 const wishlist_entity_1 = require("../wishlist/wishlist.entity");
 const typeorm_1 = require("typeorm");
 let Book = class Book extends typeorm_1.BaseEntity {
@@ -81,9 +81,9 @@ __decorate([
     __metadata("design:type", String)
 ], Book.prototype, "genre", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => research_entity_1.research, (research) => research.book),
+    (0, typeorm_1.OneToMany)(() => search_entity_1.search, (search) => search.book),
     __metadata("design:type", Array)
-], Book.prototype, "research", void 0);
+], Book.prototype, "search", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => review_entity_1.Review, (review) => review.book),
     __metadata("design:type", Array)
