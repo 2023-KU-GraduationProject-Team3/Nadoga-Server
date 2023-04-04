@@ -20,10 +20,10 @@ let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
     }
-    createUser(createUserDto) {
-        const emailExists = this.userService.emailExists(createUserDto.email);
+    async createUser(createUserDto) {
+        const emailExists = await this.userService.emailExists(createUserDto.email);
         if (emailExists) {
-            throw new common_1.ConflictException('This email already exists');
+            throw new common_1.ConflictException('이미 존재하는 이메일 입니다.');
         }
         return this.userService.createUser(createUserDto);
     }

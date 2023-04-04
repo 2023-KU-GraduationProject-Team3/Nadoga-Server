@@ -3,13 +3,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.typeORMConfig = void 0;
 exports.typeORMConfig = {
     type: 'mysql',
-    host: 'localhost',
+    host: 'nadoga-db.cu4pyfmlcefs.ap-northeast-2.rds.amazonaws.com',
     port: 3306,
     username: 'root',
     password: 'min9211301',
-    database: 'nadoga',
+    database: 'nadogaDB',
     entities: [__dirname + '/../**/*.entity.{js,ts}'],
-    synchronize: true,
+    synchronize: false,
     migrations: [],
     subscribers: [],
 };

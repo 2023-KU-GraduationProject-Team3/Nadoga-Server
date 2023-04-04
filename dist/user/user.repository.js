@@ -16,9 +16,9 @@ let UserRepository = class UserRepository extends typeorm_1.Repository {
         user.email = createUserDto.email;
         user.password = createUserDto.password;
         user.name = createUserDto.name;
-        user.gender = createUserDto.gender;
-        user.age = createUserDto.age;
         user.genre = createUserDto.genre;
+        user.age = createUserDto.age;
+        user.gender = createUserDto.gender;
         user.region = createUserDto.region;
         await user.save();
         return user;
