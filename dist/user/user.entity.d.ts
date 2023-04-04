@@ -15,6 +15,7 @@ export declare class User extends BaseEntity {
     gender: GENDER;
     age: number;
     genre: string;
+    region: string;
     createdAt: Date;
     updatedAt: Date;
     search: search[];

@@ -12,7 +12,7 @@ export class AuthService {
 
   async validateUser(payload: JwtPayload) {
     const { email } = payload;
-    const user = await this.userService.findByEmail(email);
+    const user = await this.userService.emailExists(email);
     return user;
   }
 

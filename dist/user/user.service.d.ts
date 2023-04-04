@@ -4,5 +4,5 @@ export declare class UserService {
     private userRepository;
     constructor(userRepository: UserRepository);
     createUser(createUserDto: CreateUserDto): Promise<import("./user.entity").User>;
-    findByEmail(createUserDto: CreateUserDto): Promise<import("./user.entity").User>;
+    emailExists(email: string): Promise<boolean>;
 }

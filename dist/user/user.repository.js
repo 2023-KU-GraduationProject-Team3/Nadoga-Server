@@ -15,6 +15,11 @@ let UserRepository = class UserRepository extends typeorm_1.Repository {
         const user = new user_entity_1.User();
         user.email = createUserDto.email;
         user.password = createUserDto.password;
+        user.name = createUserDto.name;
+        user.gender = createUserDto.gender;
+        user.age = createUserDto.age;
+        user.genre = createUserDto.genre;
+        user.region = createUserDto.region;
         await user.save();
         return user;
     }

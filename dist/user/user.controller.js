@@ -21,11 +21,15 @@ let UserController = class UserController {
         this.userService = userService;
     }
     createUser(createUserDto) {
+        const emailExists = this.userService.emailExists(createUserDto.email);
+        if (emailExists) {
+            throw new common_1.ConflictException('This email already exists');
+        }
         return this.userService.createUser(createUserDto);
     }
 };
 __decorate([
-    (0, common_1.Post)('log-in'),
+    (0, common_1.Post)('sign-in'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_user_dto_1.default]),

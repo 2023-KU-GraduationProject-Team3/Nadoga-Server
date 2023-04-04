@@ -9,6 +9,11 @@ export class UserRepository extends Repository<User> {
     const user = new User();
     user.email = createUserDto.email;
     user.password = createUserDto.password;
+    user.name = createUserDto.name;
+    user.gender = createUserDto.gender;
+    user.age = createUserDto.age;
+    user.genre = createUserDto.genre;
+    user.region = createUserDto.region;
     await user.save();
     return user;
   }

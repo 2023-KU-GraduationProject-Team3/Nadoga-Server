@@ -28,4 +28,7 @@ export default class CreateUserDto {
 
   @IsString()
   genre: string;
+
+  @IsString()
+  region: string;
 }

@@ -11,10 +11,15 @@ export class UserService {
   ) {}
 
   async createUser(createUserDto: CreateUserDto) {
+    console.log('서비스 실행');
+
     return this.userRepository.createUser(createUserDto);
   }
 
-  async findByEmail(createUserDto: CreateUserDto) {
-    return this.userRepository.findOneByEmail(createUserDto.email);
+  async emailExists(email: string) {
+    if (this.userRepository.findOneByEmail(email)) {
+      return true;
+    }
+    return false;
   }
 }

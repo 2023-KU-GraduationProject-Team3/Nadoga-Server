@@ -21,10 +21,14 @@ let UserService = class UserService {
         this.userRepository = userRepository;
     }
     async createUser(createUserDto) {
+        console.log('서비스 실행');
         return this.userRepository.createUser(createUserDto);
     }
-    async findByEmail(createUserDto) {
-        return this.userRepository.findOneByEmail(createUserDto.email);
+    async emailExists(email) {
+        if (this.userRepository.findOneByEmail(email)) {
+            return true;
+        }
+        return false;
     }
 };
 UserService = __decorate([

@@ -6,4 +6,5 @@ export default class CreateUserDto {
     gender: GENDER;
     age: number;
     genre: string;
+    region: string;
 }

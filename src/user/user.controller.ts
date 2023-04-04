@@ -1,4 +1,13 @@
-import { Body, Controller, Post, Req } from '@nestjs/common';
+import {
+  Body,
+  ConflictException,
+  Controller,
+  Post,
+  Req,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
+import { EventListenerTypes } from 'typeorm/metadata/types/EventListenerTypes';
 import CreateUserDto from './dto/create-user.dto';
 import { User } from './user.entity';
 import { UserService } from './user.service';
@@ -7,8 +16,14 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private userService: UserService) {}
 
-  @Post('log-in')
+  @Post('sign-in')
   createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
+    const emailExists = this.userService.emailExists(createUserDto.email);
+
+    if (emailExists) {
+      throw new ConflictException('이미 존재하는 이메일 입니다.');
+    }
+
     return this.userService.createUser(createUserDto);
   }
 }

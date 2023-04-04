@@ -80,6 +80,15 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "genre", void 0);
 __decorate([
+    (0, typeorm_1.Column)({
+        name: 'region',
+        type: 'varchar',
+        length: 30,
+        comment: '유저의 거주지역',
+    }),
+    __metadata("design:type", String)
+], User.prototype, "region", void 0);
+__decorate([
     (0, typeorm_1.CreateDateColumn)({ name: 'create_at', comment: '생성일' }),
     __metadata("design:type", Date)
 ], User.prototype, "createdAt", void 0);
