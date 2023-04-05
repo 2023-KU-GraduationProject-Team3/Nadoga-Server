@@ -15,7 +15,7 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private userService: UserService) {}
 
-  @Post('sign-in')
+  @Post('sign-up')
   async createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
     const emailExists = await this.userService.emailExists(createUserDto.email);
 
