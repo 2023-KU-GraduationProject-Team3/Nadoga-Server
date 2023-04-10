@@ -13,7 +13,6 @@ export class UserRepository extends Repository<User> {
     user.genre = createUserDto.genre;
     user.age = createUserDto.age;
     user.gender = createUserDto.gender;
-    user.region = createUserDto.region;
     await user.save();
     return user;
   }

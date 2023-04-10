@@ -71,14 +71,6 @@ export class User extends BaseEntity {
   })
   genre: string;
 
-  @Column({
-    name: 'region',
-    type: 'varchar',
-    length: 30,
-    comment: '유저의 거주지역',
-  })
-  region: string;
-
   @CreateDateColumn({ name: 'create_at', comment: '생성일' })
   createdAt: Date;
 
