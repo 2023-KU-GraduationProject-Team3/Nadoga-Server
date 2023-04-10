@@ -20,4 +20,8 @@ export class UserRepository extends Repository<User> {
   async findOneByEmail(email: string): Promise<User> {
     return this.findOneBy({ email: email });
   }
+
+  async findOneByEmail_PW(email: string, password: string): Promise<User> {
+    return this.findOneBy({ email: email, password: password });
+  }
 }

@@ -25,4 +25,22 @@ export class UserService {
       // 사용자가 존재하지 않는 경우 처리
     }
   }
+
+  async loginUser(loginUserDto: CreateUserDto) {
+    const user = await this.userRepository.findOneByEmail_PW(
+      loginUserDto.email,
+      loginUserDto.password,
+    );
+
+    if (user) {
+      return user;
+      // 로그인 성공 처리
+    } else {
+      throw new HttpException(
+        '로그인에 실패했습니다.',
+        HttpStatus.UNAUTHORIZED,
+      );
+      // 로그인 실패 처리
+    }
+  }
 }

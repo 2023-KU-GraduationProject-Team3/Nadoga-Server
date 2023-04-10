@@ -30,4 +30,9 @@ export class UserController {
   async emailExists(@Body('email') email: string): Promise<boolean> {
     return this.userService.emailExists(email);
   }
+
+  @Post('/login')
+  async loginUser(@Body() loginUserDto: CreateUserDto): Promise<User> {
+    return this.userService.loginUser(loginUserDto);
+  }
 }
