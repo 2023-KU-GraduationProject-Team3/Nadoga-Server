@@ -8,6 +8,7 @@ import { UserBookModule } from './search/search.module';
 import { ReviewModule } from './review/review.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeORMConfig } from './configs/typeorm.configs';
+import { DataSource } from 'typeorm';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
@@ -22,4 +23,6 @@ import { AuthModule } from './auth/auth.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private dataSource: DataSource) {}
+}
