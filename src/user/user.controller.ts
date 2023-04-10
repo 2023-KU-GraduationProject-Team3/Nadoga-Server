@@ -26,5 +26,8 @@ export class UserController {
     return this.userService.createUser(createUserDto);
   }
 
-
+  @Post('/email-check')
+  async emailExists(@Body('email') email: string): Promise<boolean> {
+    return this.userService.emailExists(email);
+  }
 }
