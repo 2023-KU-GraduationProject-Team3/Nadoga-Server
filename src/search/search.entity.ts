@@ -1,4 +1,3 @@
-import { Book } from 'src/book/book.entity';
 import { User } from 'src/user/user.entity';
 import {
   BaseEntity,
@@ -23,8 +22,4 @@ export class search extends BaseEntity {
   @ManyToOne(() => User, (user) => user.search)
   @JoinColumn({ name: 'user_id' })
   user: User;
-
-  @ManyToOne(() => Book, (book) => book.search)
-  @JoinColumn({ name: 'book_id' })
-  book: Book;
 }
