@@ -27,10 +27,10 @@ export class ReviewController {
     await this.reviewService.delete(id);
   }
 
-  @Get('/collab-filtering')
-  async getCollab(@Res() res): Promise<any> {
+  @Get('/algorithm/collab')
+  async getCollab(): Promise<any[]> {
     const result = await this.reviewService.getCollab();
-    return res.status(200).json(result);
+    return result
 
   }
 }
