@@ -15,12 +15,12 @@ export class WishlistService {
   ) {}
   async create(createWishlistDto: CreateWishlistDto): Promise<Wishlist> {
     const wishlist = new Wishlist();
-    wishlist.whishDate = createWishlistDto.createdAt;
 
     const user = await this.userRepository.findOne({
       where: { id: createWishlistDto.userId },
     });
     wishlist.user = user;
+    wishlist.isbn = createWishlistDto.isbn;
 
     return this.wishlistRepository.save(wishlist);
   }

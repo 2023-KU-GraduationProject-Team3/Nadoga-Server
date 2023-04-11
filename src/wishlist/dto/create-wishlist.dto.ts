@@ -5,5 +5,5 @@ export class CreateWishlistDto {
   readonly userId: string;
 
   @IsNotEmpty()
-  isbn: bigint;
+  isbn: number;
 }
