@@ -30,6 +30,7 @@ export class ReviewController {
   @Get('/collab-filtering')
   async getCollab(@Res() res): Promise<any> {
     const result = await this.reviewService.getCollab();
-    return res.send(result);
+    return res.status(200).json(result);
+
   }
 }
