@@ -9,4 +9,4 @@ import { searchService } from './search.service';
   controllers: [searchController],
   providers: [searchService],
 })
-export class UserBookModule {}
+export class SearchModule {}
