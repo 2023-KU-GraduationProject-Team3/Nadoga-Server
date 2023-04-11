@@ -26,4 +26,9 @@ export class ReviewController {
   async delete(@Param('id') id: string): Promise<void> {
     await this.reviewService.delete(id);
   }
+
+  @Get('/collab-filtering')
+  async getCollab(): Promise<any> {
+    return this.reviewService.getCollab();
+  }
 }

@@ -36,9 +36,4 @@ export class UserController {
   async loginUser(@Body() loginUserDto: CreateUserDto): Promise<User> {
     return this.userService.loginUser(loginUserDto);
   }
-
-  @Get('/collab-filtering')
-  async getCollab(): Promise<any> {
-    return this.userService.getCollab();
-  }
 }

@@ -42,4 +42,8 @@ export class ReviewService {
   async delete(id: string): Promise<void> {
     await this.reviewRepository.delete(id);
   }
+
+  async getCollab(): Promise<any> {
+    return this.reviewRepository.getCollab();
+  }
 }

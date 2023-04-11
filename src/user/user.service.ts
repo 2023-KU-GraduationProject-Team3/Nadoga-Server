@@ -36,8 +36,4 @@ export class UserService {
       // 로그인 실패 처리
     }
   }
-
-  async getCollab() {
-    return this.userRepository.getCollab();
-  }
 }

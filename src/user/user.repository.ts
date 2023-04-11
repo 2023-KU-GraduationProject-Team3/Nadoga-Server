@@ -24,8 +24,4 @@ export class UserRepository extends Repository<User> {
   async findOneByEmail_PW(email: string, password: string): Promise<User> {
     return this.findOneBy({ email: email, password: password });
   }
-
-  async getCollab(): Promise<any> {
-    return this.query(`SELECT * from user`);
-  }
 }
