@@ -2,7 +2,7 @@ import { IsNotEmpty, IsUUID } from 'class-validator';
 
 export class CreateWishlistDto {
   @IsUUID()
-  readonly userId: string;
+  userId: string;
 
   @IsNotEmpty()
   isbn: number;
