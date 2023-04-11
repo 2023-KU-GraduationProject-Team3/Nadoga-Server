@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Res } from '@nestjs/common';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { Review } from './review.entity';
 import { ReviewService } from './review.service';
@@ -28,7 +28,8 @@ export class ReviewController {
   }
 
   @Get('/collab-filtering')
-  async getCollab(): Promise<any> {
-    return this.reviewService.getCollab();
+  async getCollab(@Res() res): Promise<any> {
+    const result = await this.reviewService.getCollab();
+    return res.send(result);
   }
 }
