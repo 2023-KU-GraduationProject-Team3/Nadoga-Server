@@ -83,6 +83,6 @@ export class User extends BaseEntity {
   @OneToMany(() => Wishlist, (wishlist) => wishlist.user)
   wishlists: Wishlist[];
 
-  @OneToMany(() => Review, (review) => review.book)
+  @OneToMany(() => Review, (review) => review.user)
   reviews: Review[];
 }
