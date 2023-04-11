@@ -18,9 +18,6 @@ export class search extends BaseEntity {
   @Column({ name: 'user_id' })
   userId: string;
 
-  @Column({ name: 'book_id' })
-  bookId: string;
-
   @ManyToOne(() => User, (user) => user.search)
   @JoinColumn({ name: 'user_id' })
   user: User;

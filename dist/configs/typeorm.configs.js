@@ -9,7 +9,7 @@ exports.typeORMConfig = {
     password: 'min9211301',
     database: 'nadogaDB',
     entities: [__dirname + '/../**/*.entity.{js,ts}'],
-    synchronize: false,
+    synchronize: true,
     migrations: [],
     subscribers: [],
 };
