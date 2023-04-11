@@ -25,7 +25,7 @@ export class WishlistService {
     return this.wishlistRepository.save(wishlist);
   }
 
-  async delete(id: number): Promise<void> {
+  async delete(id: string): Promise<void> {
     await this.wishlistRepository.delete(id);
   }
 }

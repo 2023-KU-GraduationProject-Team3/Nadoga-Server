@@ -13,6 +13,6 @@ export class WishlistController {
 
   @Delete(':id')
   async delete(@Param('id') id: string): Promise<void> {
-    await this.wishlistService.delete(Number(id));
+    await this.wishlistService.delete(id);
   }
 }
