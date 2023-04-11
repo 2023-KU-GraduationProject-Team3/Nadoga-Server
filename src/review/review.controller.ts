@@ -13,7 +13,7 @@ export class ReviewController {
   }
 
   @Post()
-  async create(@Body() createReviewDto: CreateReviewDto) {
+  async create(@Body() createReviewDto: CreateReviewDto): Promise<Review> {
     return this.reviewService.create(createReviewDto);
   }
 
