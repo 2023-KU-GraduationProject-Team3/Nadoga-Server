@@ -13,8 +13,13 @@ export class ReviewService {
     @InjectRepository(UserRepository)
     private userRepository: UserRepository,
   ) {}
+
   getAllReview(): Promise<Review[]> {
-    return this.reviewRepository.getAllReview();
+    return this.reviewRepository.find();
+  }
+
+  async getReview(id: string): Promise<Review> {
+    return this.reviewRepository.findOneBy({ id: id });
   }
 
   async create(createReviewDto: CreateReviewDto): Promise<Review> {
@@ -23,12 +28,15 @@ export class ReviewService {
     const user = await this.userRepository.findOne({
       where: { id: createReviewDto.userId },
     });
+
     review.user = user;
     review.isbn = createReviewDto.isbn;
     review.rating = createReviewDto.rating;
     review.content = createReviewDto.content;
 
-    return this.reviewRepository.save(review);
+    this.reviewRepository.save(review);
+
+    return review;
   }
 
   async delete(id: string): Promise<void> {
