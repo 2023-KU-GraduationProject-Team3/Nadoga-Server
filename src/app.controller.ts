@@ -12,7 +12,7 @@ export class AppController {
   }
 
   @Post('/library')
-  getLibrary(@Body('url') url: string) {
-    return this.appService.getLibraryAPIData(url);
+  async getLibrary(@Body('url') url: string): Promise<any> {
+    return await this.appService.getLibraryAPIData(url);
   }
 }
