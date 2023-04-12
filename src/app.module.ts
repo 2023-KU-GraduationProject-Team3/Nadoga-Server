@@ -8,6 +8,7 @@ import { ReviewModule } from './review/review.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeORMConfig } from './configs/typeorm.configs';
 import { DataSource } from 'typeorm';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { DataSource } from 'typeorm';
     WishlistModule,
     SearchModule,
     ReviewModule,
+    HttpModule,
   ],
   controllers: [AppController],
   providers: [AppService],

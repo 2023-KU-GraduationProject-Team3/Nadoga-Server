@@ -1,5 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Observable } from 'rxjs';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
+import { AxiosResponse } from 'axios';
 
 @Controller()
 export class AppController {
@@ -11,5 +13,8 @@ export class AppController {
     return this.appService.getHello();
   }
 
-
+  @Post('/library')
+  getLibrary(@Body('url') url: string) {
+    return this.appService.getLibraryAPIData(url);
+  }
 }
