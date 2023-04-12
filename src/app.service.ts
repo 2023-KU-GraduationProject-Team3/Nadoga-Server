@@ -1,7 +1,6 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
-import xml2js from 'xml2js';
 
 @Injectable()
 export class AppService {
