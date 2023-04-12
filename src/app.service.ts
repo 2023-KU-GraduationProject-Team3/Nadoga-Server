@@ -18,16 +18,14 @@ export class AppService {
   //   });
   // }
 
-  async getLibraryAPIData(url: string): Promise<any> {
+  async getLibraryAPIData(url: string): Promise<string> {
     try {
       const response = await axios.get(url);
       const xmlData = response.data;
-      const parser = new xml2js.Parser({ explicitArray: false });
-      const jsonData = await parser.parseStringPromise(xmlData);
-      return jsonData;
+      return xmlData;
     } catch (error) {
       console.error(error);
-      return null;
+      throw error;
     }
   }
 }
