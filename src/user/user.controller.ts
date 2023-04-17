@@ -2,7 +2,9 @@ import {
   Body,
   ConflictException,
   Controller,
+  Delete,
   Get,
+  Param,
   Post,
   Req,
   UsePipes,
@@ -11,6 +13,7 @@ import {
 import CreateUserDto from './dto/create-user.dto';
 import { User } from './user.entity';
 import { UserService } from './user.service';
+import { DeleteResult } from 'typeorm';
 
 @Controller('user')
 export class UserController {
@@ -37,8 +40,8 @@ export class UserController {
     return this.userService.loginUser(loginUserDto);
   }
 
-  @Post('/delete')
-  async deleteUser(@Body() userId: string): Promise<User> {
+  @Delete('/:id')
+  async deleteUserById(@Param('id') userId: string): Promise<User> {
     return this.userService.deleteUser(userId);
   }
 }

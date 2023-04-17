@@ -1,7 +1,8 @@
 import { CustomRepository } from 'src/customTypeOrm.decorator';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import CreateUserDto from './dto/create-user.dto';
 import { User } from './user.entity';
+import { NotFoundException } from '@nestjs/common';
 
 @CustomRepository(User)
 export class UserRepository extends Repository<User> {
@@ -26,8 +27,12 @@ export class UserRepository extends Repository<User> {
   }
 
   async deleteUser(userId: string): Promise<User> {
-    const user = await this.findOneBy({ id: userId });
-    await user.remove();
-    return user;
+    const result = await this.findOneBy({ id: userId });
+    result.remove();
+
+    if (result == null) {
+      throw new NotFoundException();
+    }
+    return result;
   }
 }
