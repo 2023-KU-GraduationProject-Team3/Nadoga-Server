@@ -38,7 +38,7 @@ export class UserService {
     }
   }
 
-  async deleteUser(userId: string): Promise<User> {
-    return this.userRepository.deleteUser(userId);
+  async deleteUserById(userId: string): Promise<User> {
+    return this.userRepository.deleteUserById(userId);
   }
 }

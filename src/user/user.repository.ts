@@ -26,7 +26,7 @@ export class UserRepository extends Repository<User> {
     return this.findOneBy({ email: email, password: password });
   }
 
-  async deleteUser(userId: string): Promise<User> {
+  async deleteUserById(userId: string): Promise<User> {
     const result = await this.findOneBy({ id: userId });
     result.remove();
 
