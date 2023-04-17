@@ -24,4 +24,10 @@ export class UserRepository extends Repository<User> {
   async findOneByEmail_PW(email: string, password: string): Promise<User> {
     return this.findOneBy({ email: email, password: password });
   }
+
+  async deleteUser(userId: string): Promise<User> {
+    const user = await this.findOneBy({ id: userId });
+    await user.remove();
+    return user;
+  }
 }

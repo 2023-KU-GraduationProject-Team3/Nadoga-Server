@@ -36,4 +36,8 @@ export class UserService {
       // 로그인 실패 처리
     }
   }
+
+  async deleteUser(userId: string) {
+    return this.userRepository.deleteUser(userId);
+  }
 }
