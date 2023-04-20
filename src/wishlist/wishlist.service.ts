@@ -13,6 +13,16 @@ export class WishlistService {
     @InjectRepository(UserRepository)
     private userRepository: UserRepository,
   ) {}
+
+  async getWishlistByUserId(id: string) {
+    // get wishlist data with user id ORDER BY created_at DESC LIMIT 12
+    return this.wishlistRepository.find({
+      where: { user: { id: id } },
+      order: { createdAt: 'DESC' },
+      take: 12,
+    });
+  }
+
   async create(createWishlistDto: CreateWishlistDto): Promise<Wishlist> {
     const wishlist = new Wishlist();
 
@@ -25,7 +35,11 @@ export class WishlistService {
     return this.wishlistRepository.save(wishlist);
   }
 
-  async delete(id: string): Promise<void> {
-    await this.wishlistRepository.delete(id);
+  async delete(id: string, isbn: number): Promise<void> {
+    await this.wishlistRepository.delete({ user: { id: id }, isbn: isbn });
   }
+
+  // async delete(id: string): Promise<void> {
+  //   await this.wishlistRepository.delete(id);
+  // }
 }
