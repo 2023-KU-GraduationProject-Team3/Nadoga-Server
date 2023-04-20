@@ -1,6 +1,6 @@
 import { CustomRepository } from 'src/customTypeOrm.decorator';
 import { Repository } from 'typeorm';
-import { search } from './search.entity';
+import { Search } from './search.entity';
 
-@CustomRepository(search)
-export class searchRepository extends Repository<search> {}
+@CustomRepository(Search)
+export class SearchRepository extends Repository<Search> {}

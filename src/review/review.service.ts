@@ -18,8 +18,12 @@ export class ReviewService {
     return this.reviewRepository.find();
   }
 
-  async getReview(id: string): Promise<Review> {
+  async getReviewByUserId(id: string): Promise<Review> {
     return this.reviewRepository.findOneBy({ id: id });
+  }
+
+  async getReviewByIsbn(isbn: number): Promise<Review> {
+    return this.reviewRepository.findOneBy({ isbn: isbn });
   }
 
   async create(createReviewDto: CreateReviewDto): Promise<Review> {

@@ -11,7 +11,7 @@ import {
 } from 'typeorm';
 
 @Entity('search')
-export class search extends BaseEntity {
+export class Search extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

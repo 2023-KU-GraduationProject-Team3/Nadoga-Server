@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Res,
+} from '@nestjs/common';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { Review } from './review.entity';
 import { ReviewService } from './review.service';
@@ -12,9 +20,14 @@ export class ReviewController {
     return this.reviewService.getAllReview();
   }
 
-  @Get('/:id')
-  getReview(@Param('id') id: string): Promise<Review> {
-    return this.reviewService.getReview(id);
+  @Get('/id/:id')
+  getRevieByUserId(@Param('id') id: string): Promise<Review> {
+    return this.reviewService.getReviewByUserId(id);
+  }
+
+  @Get('/isbn/:isbn')
+  getReviewByIsbn(@Param('isbn') isbn: number): Promise<Review> {
+    return this.reviewService.getReviewByIsbn(isbn);
   }
 
   @Post()
@@ -30,7 +43,6 @@ export class ReviewController {
   @Get('/algorithm/collab')
   async getCollab(): Promise<any[]> {
     const result = await this.reviewService.getCollab();
-    return result
-
+    return result;
   }
 }

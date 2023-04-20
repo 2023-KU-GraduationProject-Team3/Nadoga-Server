@@ -5,7 +5,7 @@ export enum GENDER {
 }
 
 import { Review } from 'src/review/review.entity';
-import { search } from 'src/search/search.entity';
+import { Search } from 'src/search/search.entity';
 import { Wishlist } from 'src/wishlist/wishlist.entity';
 import {
   BaseEntity,
@@ -77,8 +77,8 @@ export class User extends BaseEntity {
   @UpdateDateColumn({ name: 'update_at', comment: '수정일' })
   updatedAt: Date;
 
-  @OneToMany(() => search, (search) => search.user)
-  search: search[];
+  @OneToMany(() => Search, (search) => search.user)
+  search: Search[];
 
   @OneToMany(() => Wishlist, (wishlist) => wishlist.user)
   wishlists: Wishlist[];
