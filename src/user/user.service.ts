@@ -21,9 +21,8 @@ export class UserService {
   }
 
   async loginUser(loginUserDto: CreateUserDto) {
-    const user = await this.userRepository.findOneBy({
-      email: loginUserDto.email,
-      password: loginUserDto.password,
+    const user = await this.userRepository.findOne({
+      where: { email: loginUserDto.email, password: loginUserDto.password },
     });
 
     if (user) {
