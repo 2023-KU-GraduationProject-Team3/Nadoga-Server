@@ -37,6 +37,12 @@ export class UserController {
 
   @Post('/login')
   async loginUser(@Body() loginUserDto: CreateUserDto): Promise<User> {
+    if (loginUserDto.email === undefined) {
+      throw new ConflictException('이메일을 입력해주세요.');
+    }
+    if (loginUserDto.password === undefined) {
+      throw new ConflictException('비밀번호를 입력해주세요.');
+    }
     return this.userService.loginUser(loginUserDto);
   }
 
