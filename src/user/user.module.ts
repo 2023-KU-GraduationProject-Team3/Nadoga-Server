@@ -7,7 +7,6 @@ import { UserService } from './user.service';
 @Module({
   imports: [CustomTypeOrmModule.forCustomRepository([UserRepository])],
   controllers: [UserController],
-  providers: [UserService, UserRepository],
-  exports: [UserService, UserRepository],
+  providers: [UserService],
 })
 export class UserModule {}
