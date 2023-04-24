@@ -21,10 +21,10 @@ export class UserService {
   }
 
   async loginUser(loginUserDto: CreateUserDto) {
-    const user = await this.userRepository.findOneByEmail_PW(
-      loginUserDto.email,
-      loginUserDto.password,
-    );
+    const user = await this.userRepository.findOneBy({
+      email: loginUserDto.email,
+      password: loginUserDto.password,
+    });
 
     if (user) {
       return user;

@@ -3,10 +3,13 @@ import { CustomTypeOrmModule } from 'src/customTypeOrm.module';
 import { searchController } from './search.controller';
 import { SearchRepository } from './search.repository';
 import { searchService } from './search.service';
-import { UserModule } from '../user/user.module';
+import { UserRepository } from 'src/user/user.repository';
 
 @Module({
-  imports: [CustomTypeOrmModule.forCustomRepository([SearchRepository]),UserModule],
+  imports: [
+    CustomTypeOrmModule.forCustomRepository([SearchRepository]),
+    CustomTypeOrmModule.forCustomRepository([UserRepository]),
+  ],
   controllers: [searchController],
   providers: [searchService],
 })
