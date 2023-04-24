@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { Review } from './review.entity';
-import { ReviewService } from './review.service';
+import { RatingCount, ReviewService } from './review.service';
 
 @Controller('review')
 export class ReviewController {
@@ -45,4 +45,9 @@ export class ReviewController {
     const result = await this.reviewService.getCollab();
     return result;
   }
+  @Post('algorithm/:isbn')
+  async getRating(@Param('isbn') isbn: number) : Promise<RatingCount[]>{
+    return this.reviewService.getRatingCountsByISBN(isbn);
+  }
+  
 }
