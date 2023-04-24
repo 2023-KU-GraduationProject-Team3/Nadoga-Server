@@ -25,9 +25,14 @@ export class WishlistService {
 
   async getIsWishlist(id: string, isbn: number) {
     // get wishlist data with user id and isbn
-    return this.wishlistRepository.findOne({
+    const result = await this.wishlistRepository.findOne({
       where: { user: { id: id }, isbn: isbn },
     });
+    if (result) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   async create(createWishlistDto: CreateWishlistDto): Promise<Wishlist> {
