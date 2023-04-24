@@ -23,6 +23,13 @@ export class WishlistService {
     });
   }
 
+  async getIsWishlist(id: string, isbn: number) {
+    // get wishlist data with user id and isbn
+    return this.wishlistRepository.findOne({
+      where: { user: { id: id }, isbn: isbn },
+    });
+  }
+
   async create(createWishlistDto: CreateWishlistDto): Promise<Wishlist> {
     const wishlist = new Wishlist();
 

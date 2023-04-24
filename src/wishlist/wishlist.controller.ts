@@ -11,6 +11,11 @@ export class WishlistController {
     return this.wishlistService.getWishlistByUserId(id);
   }
 
+  @Get('/:id/:isbn')
+  async getIsWishlist(@Param('id') id: string, @Param('isbn') isbn: number) {
+    return this.wishlistService.getIsWishlist(id, isbn);
+  }
+
   @Post()
   async create(@Body() createWishlistDto: CreateWishlistDto) {
     return this.wishlistService.create(createWishlistDto);
