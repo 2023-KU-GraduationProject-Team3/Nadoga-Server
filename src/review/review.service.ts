@@ -24,9 +24,10 @@ export class ReviewService {
     return this.reviewRepository.find();
   }
 
-  async getReviewByUserId(id: string): Promise<Review> {
-    return this.reviewRepository.findOneBy({ id: id });
+  async getReviewsByUserId(userId: string): Promise<Review[]> {
+    return this.reviewRepository.find({ where: { user: { id: userId } } });
   }
+
 
   async getReviewsByIsbn(isbn: number): Promise<Review[]> {
     const reviews = await this.reviewRepository
@@ -62,34 +63,27 @@ export class ReviewService {
     return this.reviewRepository.getCollab();
   }
 
-  async getRatingCountsByISBN(isbn: number): Promise<RatingCount[]> {
-    // 해당 ISBN에 대한 리뷰 정보를 가져옴
+  async getRatingCountsByISBN(isbn: number): Promise<{ totalAverage: number, ratingCounts: RatingCount[] }> {
     const reviews = await this.reviewRepository.find({ where: { isbn } });
-  
-    // rating 값의 등장 횟수를 카운트하는 객체
+    
     const ratingCounts: { [rating: number]: number } = {
-      0: 0,
-      0.5: 0,
       1: 0,
-      1.5: 0,
       2: 0,
-      2.5: 0,
       3: 0,
-      3.5: 0,
       4: 0,
-      4.5: 0,
       5: 0,
     };
-
-    // 리뷰 정보를 순회하면서 rating 값의 등장 횟수를 카운트
+  
+    let totalSum = 0;
+    const reviewCount = reviews.length;
     reviews.forEach((review) => {
-      const rating = review.rating;
-      if (rating >= 0 && rating <= 5) {
+      const rating = Math.round(review.rating); // 반올림해서 1,2,3,4,5로 변환
+      if (rating >= 1 && rating <= 5) {
         ratingCounts[rating]++;
+        totalSum += rating;
       }
     });
   
-    // rating 값과 해당 rating을 준 사용자의 수(num)를 저장하는 객체 생성
     const ratingCountsArray: RatingCount[] = Object.entries(ratingCounts).map(
       ([rating, num]) => ({
         rating: Number(rating),
@@ -97,6 +91,9 @@ export class ReviewService {
       }),
     );
 
-    return ratingCountsArray;
+    let totalAverage = totalSum / reviewCount;
+  
+    return { totalAverage, ratingCounts: ratingCountsArray };
   }
+  
 }
