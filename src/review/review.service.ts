@@ -65,7 +65,7 @@ export class ReviewService {
   async getRatingCountsByISBN(isbn: number): Promise<RatingCount[]> {
     // 해당 ISBN에 대한 리뷰 정보를 가져옴
     const reviews = await this.reviewRepository.find({ where: { isbn } });
-
+  
     // rating 값의 등장 횟수를 카운트하는 객체
     const ratingCounts: { [rating: number]: number } = {
       0: 0,
@@ -88,7 +88,7 @@ export class ReviewService {
         ratingCounts[rating]++;
       }
     });
-
+  
     // rating 값과 해당 rating을 준 사용자의 수(num)를 저장하는 객체 생성
     const ratingCountsArray: RatingCount[] = Object.entries(ratingCounts).map(
       ([rating, num]) => ({
