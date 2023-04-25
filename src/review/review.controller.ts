@@ -37,6 +37,7 @@ export class ReviewController {
   async create(@Body() createReviewDto: CreateReviewDto): Promise<Review> {
     return this.reviewService.create(createReviewDto);
   }
+  //업데이트 추가
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateReviewDto: CreateReviewDto): Promise<Review> {
     return this.reviewService.update(id, updateReviewDto);

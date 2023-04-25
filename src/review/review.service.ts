@@ -38,6 +38,7 @@ export class ReviewService {
     return reviews;
   }
 
+    //업데이트 추가
   async update(id: string, updateReviewDto: CreateReviewDto): Promise<Review> {
     const review = await this.reviewRepository.findOne({ where: { id } });
   
