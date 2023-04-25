@@ -21,8 +21,8 @@ export class ReviewController {
   }
 
   @Get('/id/:id')
-  getRevieByUserId(@Param('id') id: string): Promise<Review> {
-    return this.reviewService.getReviewByUserId(id);
+  getReviewByUserId(@Param('id') user_id: string): Promise<Review> {
+    return this.reviewService.getReviewByUserId(user_id);
   }
 
   @Get('/isbn/:isbn')
@@ -45,9 +45,8 @@ export class ReviewController {
     const result = await this.reviewService.getCollab();
     return result;
   }
-  @Post('algorithm/:isbn')
-  async getRating(@Param('isbn') isbn: number) : Promise<RatingCount[]>{
+  @Get('algorithm/:isbn')
+  async getRating(@Param('isbn') isbn: number): Promise<RatingCount[]> {
     return this.reviewService.getRatingCountsByISBN(isbn);
   }
-  
 }
