@@ -18,8 +18,8 @@ export class searchService {
     return this.searchRepositoy.find();
   }
 
-  async getSearchByUserId(id: string): Promise<Search> {
-    return this.searchRepositoy.findOneBy({ id: id });
+  async getSearchByUserId(userId: string): Promise<Search[]> {
+    return this.searchRepositoy.find({ where: { user: { id: userId } } });
   }
 
   async createSearchById(createSearchDto: CreateSearchDto): Promise<Search> {
