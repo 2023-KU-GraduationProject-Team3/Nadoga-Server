@@ -26,8 +26,8 @@ export class ReviewController {
   }
 
   @Get('/isbn/:isbn')
-  getReviewByIsbn(@Param('isbn') isbn: number): Promise<Review> {
-    return this.reviewService.getReviewByIsbn(isbn);
+  getReviewByIsbn(@Param('isbn') isbn: number): Promise<Review[]> {
+    return this.reviewService.getReviewsByIsbn(isbn);
   }
 
   @Post()

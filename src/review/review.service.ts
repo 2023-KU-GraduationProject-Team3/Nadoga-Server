@@ -28,8 +28,13 @@ export class ReviewService {
     return this.reviewRepository.findOneBy({ id: id });
   }
 
-  async getReviewByIsbn(isbn: number): Promise<Review> {
-    return this.reviewRepository.findOneBy({ isbn: isbn });
+  async getReviewsByIsbn(isbn: number): Promise<Review[]> {
+    const reviews = await this.reviewRepository
+      .createQueryBuilder('review')
+      .leftJoinAndSelect('review.user', 'user')
+      .where('review.isbn = :isbn', { isbn })
+      .getMany();
+    return reviews;
   }
 
   async create(createReviewDto: CreateReviewDto): Promise<Review> {
