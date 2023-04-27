@@ -4,7 +4,9 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
+  Put,
   Res,
 } from '@nestjs/common';
 import { CreateReviewDto } from './dto/create-review.dto';
@@ -29,11 +31,17 @@ export class ReviewController {
   getReviewByIsbn(@Param('isbn') isbn: number): Promise<Review[]> {
     return this.reviewService.getReviewsByIsbn(isbn);
   }
+  
 
   @Post()
   async create(@Body() createReviewDto: CreateReviewDto): Promise<Review> {
     return this.reviewService.create(createReviewDto);
   }
+  //업데이트 추가
+  @Patch(':id')
+  async update(@Param('id') id: string, @Body() updateReviewDto: CreateReviewDto): Promise<Review> {
+    return this.reviewService.update(id, updateReviewDto);
+}
 
   @Delete('/:id')
   async delete(@Param('id') id: string): Promise<void> {

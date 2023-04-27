@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepository } from 'src/user/user.repository';
 import { getConnection } from 'typeorm';
@@ -36,6 +36,24 @@ export class ReviewService {
       .getMany();
     return reviews;
   }
+
+    //업데이트 추가
+  async update(id: string, updateReviewDto: CreateReviewDto): Promise<Review> {
+    const review = await this.reviewRepository.findOne({ where: { id } });
+  
+    if (!review) {
+      throw new NotFoundException(`Review  ${id} not found`);
+    }
+  
+    const { rating, content } = updateReviewDto;
+  
+    review.rating = rating !== undefined ? rating : review.rating;
+    review.content = content !== undefined ? content : review.content;
+  
+    return this.reviewRepository.save(review);
+  }
+
+  
 
   async create(createReviewDto: CreateReviewDto): Promise<Review> {
     const review = new Review();
