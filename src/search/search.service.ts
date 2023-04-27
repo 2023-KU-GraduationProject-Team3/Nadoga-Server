@@ -18,8 +18,21 @@ export class searchService {
     return this.searchRepositoy.find();
   }
 
-  async getSearchByUserId(id: string): Promise<Search> {
-    return this.searchRepositoy.findOneBy({ id: id });
+  async getSearchByUserId(userId: string): Promise<Search[]> {
+    const search = await this.searchRepositoy
+      .createQueryBuilder('search')
+      .leftJoinAndSelect('search.user', 'user')
+      .where('search.user = :userId', { userId })
+      .getMany();
+    return search;
+  }
+
+  async searchExists(user_id: string, book_isbn: number): Promise<boolean> {
+    const search = await this.searchRepositoy.findOneBy({
+      user: { id: user_id },
+      isbn: book_isbn,
+    });
+    return search != null;
   }
 
   async createSearchById(createSearchDto: CreateSearchDto): Promise<Search> {
@@ -29,10 +42,19 @@ export class searchService {
       where: { id: createSearchDto.userId },
     });
 
+    const searchExists = await this.searchExists(
+      createSearchDto.userId,
+      createSearchDto.isbn,
+    );
+
+    if (searchExists) {
+      return null;
+    }
+
     search.user = user;
     search.isbn = createSearchDto.isbn;
 
-    this.searchRepositoy.save(search);
+    await search.save();
 
     return search;
   }

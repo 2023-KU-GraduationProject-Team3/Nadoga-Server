@@ -13,7 +13,7 @@ export class searchController {
   }
 
   @Get('/:id')
-  getSearchByUserId(@Param('id') id: string): Promise<Search> {
+  getSearchByUserId(@Param('id') id: string): Promise<Search[]> {
     return this.searchService.getSearchByUserId(id);
   }
 

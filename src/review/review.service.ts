@@ -28,7 +28,6 @@ export class ReviewService {
     return this.reviewRepository.find({ where: { user: { id: userId } } });
   }
 
-
   async getReviewsByIsbn(isbn: number): Promise<Review[]> {
     const reviews = await this.reviewRepository
       .createQueryBuilder('review')
@@ -50,7 +49,7 @@ export class ReviewService {
     review.rating = createReviewDto.rating;
     review.content = createReviewDto.content;
 
-    this.reviewRepository.save(review);
+    await review.save();
 
     return review;
   }
@@ -63,9 +62,11 @@ export class ReviewService {
     return this.reviewRepository.getCollab();
   }
 
-  async getRatingCountsByISBN(isbn: number): Promise<{ totalAverage: number, ratingCounts: RatingCount[] }> {
+  async getRatingCountsByISBN(
+    isbn: number,
+  ): Promise<{ totalAverage: number; ratingCounts: RatingCount[] }> {
     const reviews = await this.reviewRepository.find({ where: { isbn } });
-    
+
     const ratingCounts: { [rating: number]: number } = {
       1: 0,
       2: 0,
@@ -73,7 +74,7 @@ export class ReviewService {
       4: 0,
       5: 0,
     };
-  
+
     let totalSum = 0;
     const reviewCount = reviews.length;
     reviews.forEach((review) => {
@@ -83,7 +84,7 @@ export class ReviewService {
         totalSum += rating;
       }
     });
-  
+
     const ratingCountsArray: RatingCount[] = Object.entries(ratingCounts).map(
       ([rating, num]) => ({
         rating: Number(rating),
@@ -91,9 +92,8 @@ export class ReviewService {
       }),
     );
 
-    let totalAverage = totalSum / reviewCount;
-  
+    const totalAverage = totalSum / reviewCount;
+
     return { totalAverage, ratingCounts: ratingCountsArray };
   }
-  
 }
