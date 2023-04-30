@@ -25,7 +25,12 @@ export class ReviewService {
   }
 
   async getReviewsByUserId(userId: string): Promise<Review[]> {
-    return this.reviewRepository.find({ where: { user: { id: userId } } });
+    return this.reviewRepository.find({
+      where: { user: { id: userId } },
+      order: {
+        createdAt: 'DESC',
+      },
+    });
   }
 
   async getReviewsByIsbn(isbn: number): Promise<Review[]> {
@@ -37,23 +42,21 @@ export class ReviewService {
     return reviews;
   }
 
-    //업데이트 추가
+  //업데이트 추가
   async update(id: string, updateReviewDto: CreateReviewDto): Promise<Review> {
     const review = await this.reviewRepository.findOne({ where: { id } });
-  
+
     if (!review) {
       throw new NotFoundException(`Review  ${id} not found`);
     }
-  
+
     const { rating, content } = updateReviewDto;
-  
+
     review.rating = rating !== undefined ? rating : review.rating;
     review.content = content !== undefined ? content : review.content;
-  
+
     return this.reviewRepository.save(review);
   }
-
-  
 
   async create(createReviewDto: CreateReviewDto): Promise<Review> {
     const review = new Review();

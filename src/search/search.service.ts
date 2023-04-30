@@ -19,11 +19,18 @@ export class searchService {
   }
 
   async getSearchByUserId(userId: string): Promise<Search[]> {
-    const search = await this.searchRepositoy
-      .createQueryBuilder('search')
-      .leftJoinAndSelect('search.user', 'user')
-      .where('search.user = :userId', { userId })
-      .getMany();
+    // const search = await this.searchRepositoy
+    //   .createQueryBuilder('search')
+    //   .leftJoinAndSelect('search.user', 'user')
+    //   .where('search.user = :userId', { userId })
+    //   .getMany();
+
+    // get search with user id ORDER BY createdAt DESC
+    const search = await this.searchRepositoy.find({
+      where: { user: { id: userId } },
+      order: { createdAt: 'DESC' },
+    });
+
     return search;
   }
 
@@ -59,7 +66,10 @@ export class searchService {
     return search;
   }
 
-  async deleteSearchById(id: string): Promise<void> {
-    await this.searchRepositoy.delete(id);
+  async deleteSearch(user_id: string, book_isbn: number): Promise<void> {
+    await this.searchRepositoy.delete({
+      user: { id: user_id },
+      isbn: book_isbn,
+    });
   }
 }

@@ -24,8 +24,11 @@ export class searchController {
     return this.searchService.createSearchById(createSearchDto);
   }
 
-  @Delete('/:id')
-  async delete(@Param('id') id: string): Promise<void> {
-    await this.searchService.deleteSearchById(id);
+  @Delete('/:id/:isbn')
+  async deleteSearch(
+    @Param('id') id: string,
+    @Param('isbn') isbn: number,
+  ): Promise<void> {
+    await this.searchService.deleteSearch(id, isbn);
   }
 }
