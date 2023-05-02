@@ -15,7 +15,6 @@ import {
 import CreateUserDto from './dto/create-user.dto';
 import { User } from './user.entity';
 import { UserService } from './user.service';
-import { DeleteResult } from 'typeorm';
 
 @Controller('user')
 export class UserController {
