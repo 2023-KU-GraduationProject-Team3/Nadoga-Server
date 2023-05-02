@@ -20,6 +20,16 @@ export class UserService {
     return this.userRepository.findOneBy({ email: email });
   }
 
+
+  async findUser(userId : string): Promise<User>{
+    return this.userRepository.findOneByEmail(userId);
+  }
+
+  async updateUser(user: User): Promise<User> {
+    return this.userRepository.save(user);
+  }
+
+
   async loginUser(loginUserDto: CreateUserDto) {
     const user = await this.userRepository.findOne({
       where: { email: loginUserDto.email, password: loginUserDto.password },

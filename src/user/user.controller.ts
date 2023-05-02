@@ -4,7 +4,9 @@ import {
   Controller,
   Delete,
   Get,
+  NotFoundException,
   Param,
+  Patch,
   Post,
   Req,
   UsePipes,
@@ -33,6 +35,20 @@ export class UserController {
   @Post('/email-check')
   async emailExists(@Body('email') email: string): Promise<User> {
     return this.userService.emailExists(email);
+  }
+  @Patch('/update-up/:id')
+  async updateUser(@Param('id') id: string, @Body() createUserDto: CreateUserDto,): Promise<User> {
+    const user = await this.userService.findUser(id);
+
+    if(!user){
+      throw new NotFoundException("해당 유저가 존재하지않습니다.");
+    }
+    const updatedUser = Object.assign(user, createUserDto);
+
+    // 업데이트된 유저 정보를 저장합니다.
+    return this.userService.updateUser(updatedUser);
+  
+  
   }
 
   @Post('/login')
