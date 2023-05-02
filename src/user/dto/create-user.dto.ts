@@ -10,7 +10,7 @@ import { GENDER } from '../user.entity';
 export default class CreateUserDto {
   @IsEmail()
   @IsNotEmpty()
-  email: string;
+  email: string;   
 
   @IsString()
   @IsNotEmpty()
