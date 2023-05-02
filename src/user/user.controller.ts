@@ -20,6 +20,11 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private userService: UserService) {}
 
+  @Get('/')
+  async getAllUsers(): Promise<User[]> {
+    return this.userService.getAllUsers();
+  }
+
   @Post('/sign-up')
   async createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
     const emailExists = await this.userService.emailExists(createUserDto.email);
@@ -69,6 +74,6 @@ export class UserController {
 
   @Get('/statistic/:id')
   async getStatisticByUserId(@Param('id') userId: string): Promise<any> {
-    return this.userService.getStatisticByUserId(userId);
+    return await this.userService.getStatisticByUserId(userId);
   }
 }
