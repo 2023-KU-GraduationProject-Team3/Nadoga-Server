@@ -117,4 +117,25 @@ export class ReviewService {
 
     return { totalAverage, ratingCounts: ratingCountsArray };
   }
+
+  async getRankByUserId(id: string): Promise<any> {
+    const query = `
+    SELECT 
+    user_id, 
+    COUNT(*),
+    RANK() OVER (ORDER BY COUNT(*) DESC) as rankreview
+  FROM 
+    review
+  GROUP BY 
+    user_id
+  ORDER BY 
+    rankreview ASC;
+    `;
+    const result = await this.reviewRepository.query(query);
+    const user = result.find((row) => row.user_id === id);
+    const userRank = user ? parseInt(user.rankreview) : -1;
+    const totalUsers = result.length;
+
+    return {userRank, totalUsers};
+  }
 }

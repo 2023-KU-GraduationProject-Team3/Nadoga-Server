@@ -57,4 +57,10 @@ export class ReviewController {
   async getRating(@Param('isbn') isbn: number): Promise<{ totalAverage: number, ratingCounts: RatingCount[] }> {
     return this.reviewService.getRatingCountsByISBN(isbn);
   }
+
+  @Get('/rank/:id')
+  async getRank(@Param('id') id: string): Promise<void>{
+    return this.reviewService.getRankByUserId(id);
+  }
+
 }
