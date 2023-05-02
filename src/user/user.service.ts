@@ -4,12 +4,21 @@ import CreateUserDto from './dto/create-user.dto';
 import { UserRepository } from './user.repository';
 import { User } from './user.entity';
 import { DeleteResult } from 'typeorm';
+import { ReviewRepository } from 'src/review/review.repository';
+import { SearchRepository } from 'src/search/search.repository';
+import { WishlistRepository } from 'src/wishlist/wishlist.repository';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(UserRepository)
     private userRepository: UserRepository,
+    @InjectRepository(ReviewRepository)
+    private reviewRepository: ReviewRepository,
+    @InjectRepository(SearchRepository)
+    private searchRepository: SearchRepository,
+    @InjectRepository(WishlistRepository)
+    private wishlistRepository: WishlistRepository
   ) {}
 
   async createUser(createUserDto: CreateUserDto) {
@@ -49,5 +58,41 @@ export class UserService {
     return this.userRepository.deleteUserById(userId);
   }
 
-  async getStatisticByUserId(userId: string): Promise<any> {}
+  async getStatisticByUserId(userId: string): Promise<any> {
+
+    const reviews = await this.reviewRepository.createQueryBuilder("review")
+    .select(["review.isbn", "COUNT(review.id) as count"])
+    .where("review.user_id = :userId", { userId })
+    .groupBy("review.isbn")
+    .getRawMany();
+    
+    const reviewIsbns = reviews.map(review => ({ review_isbn: review.review_book_isbn }));
+    
+
+    const searchs = await this.searchRepository.createQueryBuilder("search")
+    .select(["search.isbn", "COUNT(search.id) as count"])
+    .where("search.user_id = :userId", { userId })
+    .groupBy("search.isbn")
+    .getRawMany();
+    
+    const searchsIsbns = searchs.map(search => ({ search_isbn: search.search_book_isbn }));
+
+
+
+
+
+    const wishlists = await this.wishlistRepository.createQueryBuilder("wishlist")
+    .select(["wishlist.isbn", "COUNT(wishlist.id) as count"])
+    .where("wishlist.user_id = :userId", { userId })
+    .groupBy("wishlist.isbn")
+    .getRawMany();
+    
+    const wishlistsIsbns = wishlists.map(wishlist => ({ wishlist_isbn: wishlist.wishlist_book_isbn }));
+
+
+
+
+    return {reviewIsbns, searchsIsbns, wishlistsIsbns };
+
+  }
 }
