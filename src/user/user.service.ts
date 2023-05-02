@@ -20,16 +20,13 @@ export class UserService {
     return this.userRepository.findOneBy({ email: email });
   }
 
-
-  async findUser(userId : string): Promise<User>{
+  async findUser(userId: string): Promise<User> {
     return this.userRepository.findOneBy({ id: userId });
-
   }
 
   async updateUser(user: User): Promise<User> {
     return this.userRepository.save(user);
   }
-
 
   async loginUser(loginUserDto: CreateUserDto) {
     const user = await this.userRepository.findOne({
@@ -51,4 +48,6 @@ export class UserService {
   async deleteUserById(userId: string): Promise<User> {
     return this.userRepository.deleteUserById(userId);
   }
+
+  async getStatisticByUserId(userId: string): Promise<any> {}
 }

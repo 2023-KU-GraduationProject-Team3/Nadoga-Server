@@ -36,18 +36,19 @@ export class UserController {
     return this.userService.emailExists(email);
   }
   @Patch('/update-up/:id')
-  async updateUser(@Param('id') id: string, @Body() createUserDto: CreateUserDto,): Promise<User> {
+  async updateUser(
+    @Param('id') id: string,
+    @Body() createUserDto: CreateUserDto,
+  ): Promise<User> {
     const user = await this.userService.findUser(id);
 
-    if(!user){
-      throw new NotFoundException("해당 유저가 존재하지않습니다.");
+    if (!user) {
+      throw new NotFoundException('해당 유저가 존재하지않습니다.');
     }
     const updatedUser = Object.assign(user, createUserDto);
 
     // 업데이트된 유저 정보를 저장합니다.
     return this.userService.updateUser(updatedUser);
-  
-  
   }
 
   @Post('/login')
@@ -64,5 +65,10 @@ export class UserController {
   @Delete('/:id')
   async deleteUserById(@Param('id') userId: string): Promise<User> {
     return this.userService.deleteUserById(userId);
+  }
+
+  @Get('/statistic/:id')
+  async getStatisticByUserId(@Param('id') userId: string): Promise<any> {
+    return this.userService.getStatisticByUserId(userId);
   }
 }
