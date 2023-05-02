@@ -31,7 +31,6 @@ export class ReviewController {
   getReviewByIsbn(@Param('isbn') isbn: number): Promise<Review[]> {
     return this.reviewService.getReviewsByIsbn(isbn);
   }
-  
 
   @Post()
   async create(@Body() createReviewDto: CreateReviewDto): Promise<Review> {
@@ -39,9 +38,12 @@ export class ReviewController {
   }
   //업데이트 추가
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateReviewDto: CreateReviewDto): Promise<Review> {
+  async update(
+    @Param('id') id: string,
+    @Body() updateReviewDto: CreateReviewDto,
+  ): Promise<Review> {
     return this.reviewService.update(id, updateReviewDto);
-}
+  }
 
   @Delete('/:id')
   async delete(@Param('id') id: string): Promise<void> {
@@ -54,13 +56,14 @@ export class ReviewController {
     return result;
   }
   @Get('algorithm/:isbn')
-  async getRating(@Param('isbn') isbn: number): Promise<{ totalAverage: number, ratingCounts: RatingCount[] }> {
+  async getRating(
+    @Param('isbn') isbn: number,
+  ): Promise<{ totalAverage: number; ratingCounts: RatingCount[] }> {
     return this.reviewService.getRatingCountsByISBN(isbn);
   }
 
   @Get('/rank/:id')
-  async getRank(@Param('id') id: string): Promise<void>{
+  async getRank(@Param('id') id: string): Promise<void> {
     return this.reviewService.getRankByUserId(id);
   }
-
 }
