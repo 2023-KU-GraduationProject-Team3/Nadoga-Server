@@ -71,9 +71,4 @@ export class UserController {
   async deleteUserById(@Param('id') userId: string): Promise<User> {
     return this.userService.deleteUserById(userId);
   }
-
-  @Get('/statistic/:id')
-  async getStatisticByUserId(@Param('id') userId: string): Promise<any> {
-    return await this.userService.getStatisticByUserId(userId);
-  }
 }
