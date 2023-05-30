@@ -25,6 +25,11 @@ export class UserController {
     return this.userService.getAllUsers();
   }
 
+  @Get('/user-info/:id')
+  async getUserInfo(@Param('id') userId: string): Promise<any> {
+    return this.userService.getUserInfo(userId);
+  }
+
   @Post('/sign-up')
   async createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
     const emailExists = await this.userService.emailExists(createUserDto.email);

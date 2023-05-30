@@ -26,6 +26,10 @@ export class UserService {
     return this.userRepository.find();
   }
 
+  async getUserInfo(userid: string): Promise<any> {
+    return this.userRepository.findOneBy({ id: userid });
+  }
+
   async createUser(createUserDto: CreateUserDto) {
     return this.userRepository.createUser(createUserDto);
   }
